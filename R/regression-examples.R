@@ -39,9 +39,11 @@ tbl_uvregression(
 	include = c(nsibs),
 	method = lm)
 
-fit <- glm(nsibs ~ glasses + sleep_wkdy + sleep_wknd, data = nlsy)
+poisson_model <- glm(nsibs ~ glasses + sleep_wkdy + sleep_wknd,
+										 data = nlsy,
+										 family = poisson(link = 'log'))
 
-tbl_regression(fit,
+tbl_regression(poisson_model,
 							 intercept = TRUE,
 							 label = list(
 							 ))
